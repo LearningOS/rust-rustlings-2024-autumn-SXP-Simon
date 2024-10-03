@@ -9,8 +9,7 @@
 #[allow(unused_variables, unused_assignments)]
 fn main() {
     let my_option: Option<()> = None;
-    if my_option.is_some() {
-        //let _unwrapped =my_option.unwrap();
+    if let Some(_) = my_option {
         my_option.unwrap();
     }
 
