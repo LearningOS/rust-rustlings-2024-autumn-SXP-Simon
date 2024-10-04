@@ -27,7 +27,6 @@ fn main() {
     for handle in handles {
         // a struct is returned from thread::spawn, can you use it?
         results.push(handle.join().expect("Oh no! The thread panicked!"));
-        results.push(result);
     }
 
     if results.len() != 10 {
