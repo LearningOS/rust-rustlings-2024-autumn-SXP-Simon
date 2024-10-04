@@ -13,7 +13,7 @@ fn main() {
         -1, -2, -3,
         -4, -5, -6,
     ];
-    println!("My array! Here it is: {&m}", my_arr);
+    println!("My array! Here it is: &my_arr");
 
     let mut my_empty_vec = vec![1, 2, 3, 4, 5];
     my_empty_vec.clear();

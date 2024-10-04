@@ -21,5 +21,5 @@ fn main() {
     assert_eq!(my_iterable_fav_fruits.next(), Some(&"avocado"));
     assert_eq!(my_iterable_fav_fruits.next(), Some(&"peach"));
     assert_eq!(my_iterable_fav_fruits.next(), Some(&"raspberry"));
-    assert_eq!(my_iterable_fav_fruits.next(), None)
+    assert_eq!(my_iterable_fav_fruits.next(), None);
 }
