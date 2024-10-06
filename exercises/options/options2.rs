@@ -39,7 +39,7 @@ mod tests {
         // integer = optional_integers.pop() {
         //     assert_eq!(integer, cursor);
         //     cursor -= 1;
-        }
+        
 
         assert_eq!(cursor, 0);
     }
