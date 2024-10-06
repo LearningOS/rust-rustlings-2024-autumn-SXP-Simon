@@ -8,13 +8,14 @@
 mod tests {
     #[test]
     fn simple_option() {
-        let target = "rustlings";
-        let optional_target = Some(target);
+        let target = Some("rustlings");
 
         // Make this an if let statement whose value is "Some" type
+        if let Some(value) = target {
+            assert_eq!(value, "rustlings");
 
-        if let Some(target) = optional_target {
-            assert_eq!(target, "rustlings");
+
+       
         }
     }
 
@@ -42,5 +43,6 @@ mod tests {
         
 
         assert_eq!(cursor, 0);
+        
     }
 }
