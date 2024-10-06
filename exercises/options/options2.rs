@@ -13,7 +13,8 @@ mod tests {
 
         // Make this an if let statement whose value is "Some" type
 
-        assert_eq!(optional_target, Some("rustlings"));
+        if let Some(target) = optional_target {
+            assert_eq!(target, "rustlings");
         }
     }
 
