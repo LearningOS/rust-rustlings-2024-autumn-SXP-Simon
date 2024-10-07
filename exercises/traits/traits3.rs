@@ -9,15 +9,19 @@
 
 pub trait Licensed {
     fn licensing_info(&self) -> String;
+    
 }
+
 impl Licensed for SomeSoftware {
     fn licensing_info(&self) -> String {
         "Some information".to_string()
+
     }
 }
 impl Licensed for OtherSoftware {
     fn licensing_info(&self) -> String {
         "Some information".to_string()
+
     }
 }
 
