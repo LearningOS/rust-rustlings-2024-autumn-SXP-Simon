@@ -3,7 +3,6 @@
 // Execute `rustlings hint threads3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 use std::sync::mpsc;
 use std::sync::Arc;
@@ -59,6 +58,9 @@ fn main() {
     for received in rx {
         println!("Got: {}", received);
         total_received += 1;
+        if total_received == queue_length {
+            break;
+        }
     }
 
     println!("total numbers received: {}", total_received);
