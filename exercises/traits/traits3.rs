@@ -4,26 +4,14 @@
 // them return the same information without writing the same function twice.
 //
 // Consider what you can add to the Licensed trait.
-//
 
 
 pub trait Licensed {
-    fn licensing_info(&self) -> String;
-    
-}
-
-impl Licensed for SomeSoftware {
     fn licensing_info(&self) -> String {
         "Some information".to_string()
-
     }
 }
-impl Licensed for OtherSoftware {
-    fn licensing_info(&self) -> String {
-        "Some information".to_string()
 
-    }
-}
 
 struct SomeSoftware {
     version_number: i32,

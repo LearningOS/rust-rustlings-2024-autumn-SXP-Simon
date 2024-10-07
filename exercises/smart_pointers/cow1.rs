@@ -20,13 +20,14 @@ fn abs_all<'a, 'b>(input: &'a mut Cow<'b, [i32]>) -> &'a mut Cow<'b, [i32]> {
             // Clones into a vector if not already owned.
 
             input.to_mut()[i] = -v;
-        if let Cow::Owned(_) = input {
-            println!("Owned");
-        } else if let Cow::Borrowed(_) = input {
-            println!("Borrowed");
-        } else {
-            println!("Something else");
         }
+    }
+    if let Cow::Owned(_) = input {
+        println!("Owned");
+    } else if let Cow::Borrowed(_) = input {
+        println!("Borrowed");
+    } else {
+        println!("Something else");
     }
     input
 }
