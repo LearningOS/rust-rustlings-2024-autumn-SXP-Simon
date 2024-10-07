@@ -40,38 +40,27 @@ fn main() {
 
     let mercury = Planet::Mercury(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 2 references
-    mercury.details();
 
     let venus = Planet::Venus(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 3 references
-    venus.details();
 
     let earth = Planet::Earth(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 4 references
-    earth.details();
 
     let mars = Planet::Mars(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 5 references
-    mars.details();
 
     let jupiter = Planet::Jupiter(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 6 references
-    jupiter.details();
 
-    drop(mercury);
-    let saturn = Planet::Saturn(Rc::new(Sun {}));
+    let saturn = Planet::Saturn(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
-    saturn.details();
 
-    drop(venus);
-    let uranus = Planet::Uranus(Rc::new(Sun {}));
+    let uranus = Planet::Uranus(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
-    uranus.details();
 
-    drop(earth);
-    let neptune = Planet::Neptune(Rc::new(Sun {}));
+    let neptune = Planet::Neptune(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 9 references
-    neptune.details();
 
     assert_eq!(Rc::strong_count(&sun), 9);
 
