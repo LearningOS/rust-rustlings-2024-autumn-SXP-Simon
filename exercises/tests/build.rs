@@ -30,8 +30,10 @@ fn main() {
     // 设置环境变量 TEST_FOO
     let timestamp = SystemTime::now()
         .duration_since(SystemTime::UNIX_EPOCH)
-        .expect("Time went backwards");
-    println!("cargo:TEST_FOO={}", timestamp.as_secs());
+        .expect("Time went backwards")
+        .as_secs(); // Move `as_secs()` here to fix the issue
+
+    println!("cargo:TEST_FOO={}", timestamp);
 
     // 启用 "pass" 特性
     println!("cargo:rustc-cfg=feature=\"pass\"");
