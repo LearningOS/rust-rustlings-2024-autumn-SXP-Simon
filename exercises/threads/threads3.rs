@@ -49,13 +49,32 @@ fn send_tx(q: Arc<Queue>, tx: mpsc::Sender<u32>) -> Vec<thread::JoinHandle<()>> 
     vec![handle1, handle2]
 }
 
+// fn main() {
+//     let (tx, rx) = mpsc::channel();
+//     //let queue = Queue::new();
+//     let queue = Arc::new(Queue::new());
+//     let queue_length = queue.length;
+
+//     send_tx(queue, tx);
+
+//     let mut total_received: u32 = 0;
+//     for received in rx {
+//         println!("Got: {}", received);
+//         total_received += 1;
+//         if total_received == queue_length {
+//             break;
+//         }
+//     }
+
+//     println!("total numbers received: {}", total_received);
+//     assert_eq!(total_received, queue_length)
+// }
 fn main() {
     let (tx, rx) = mpsc::channel();
-    //let queue = Queue::new();
     let queue = Arc::new(Queue::new());
     let queue_length = queue.length;
 
-    send_tx(queue, tx);
+    let handles = send_tx(queue, tx);
 
     let mut total_received: u32 = 0;
     for received in rx {
@@ -64,6 +83,10 @@ fn main() {
         if total_received == queue_length {
             break;
         }
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
     }
 
     println!("total numbers received: {}", total_received);
