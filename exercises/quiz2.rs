@@ -32,7 +32,7 @@ mod my_module {
     use super::Command;
 
     //Complete the function signature!
-    pub fn transformer(input: Vec<String,Command>) -> Vec<String> {
+    pub fn transformer(input: Vec<(String,Command)>) -> Vec<String> {
         // TODO: Complete the output declaration!
         let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
@@ -42,7 +42,7 @@ mod my_module {
                 Command::Trim => output.push(string.trim().to_string()),
                 Command::Append(n) => output.push(string.clone() + &"bar".repeat(*n)),
             }
-            
+
         }
         output
     }
