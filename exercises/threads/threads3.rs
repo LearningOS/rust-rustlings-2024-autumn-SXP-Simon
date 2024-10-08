@@ -52,7 +52,7 @@ fn send_tx(q: Arc<Queue>, tx: mpsc::Sender<u32>) -> Vec<thread::JoinHandle<()>> 
 fn main() {
     let (tx, rx) = mpsc::channel();
     //let queue = Queue::new();
-    let quene = Arc::new(Queue::new());
+    let queue = Arc::new(Queue::new());
     let queue_length = queue.length;
 
     send_tx(queue, tx);
