@@ -25,13 +25,13 @@ impl Queue {
     }
 }
 
-fn send_tx(q: Arc<Queue>, tx: mpsc::Sender<u32>) -> () {
+fn send_tx(q: Arc<Queue>, tx: mpsc::Sender<u32>) -> Vec<thread::JoinHandle<()>> {
     let qc1 = Arc::clone(&q);
     let qc2 = Arc::clone(&q);
     let tx1 = tx.clone();
     let tx2 = tx.clone();
 
-    thread::spawn(move || {
+    let handle1 = thread::spawn(move || {
         for val in &qc1.first_half {
             println!("sending {:?}", val);
             tx.send(*val).unwrap();
@@ -39,13 +39,14 @@ fn send_tx(q: Arc<Queue>, tx: mpsc::Sender<u32>) -> () {
         }
     });
 
-    thread::spawn(move || {
+    let handle2 = thread::spawn(move || {
         for val in &qc2.second_half {
             println!("sending {:?}", val);
             tx.send(*val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
+    vec![handle1, handle2]
 }
 
 fn main() {

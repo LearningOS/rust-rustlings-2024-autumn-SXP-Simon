@@ -29,21 +29,25 @@
 
 // I AM NOT DONE
 
-extern "Rust" {
-    fn my_demo_function(a: u32) -> u32;
-    fn my_demo_function_alias(a: u32) -> u32;
-}
+// extern "Rust" {
+//     fn my_demo_function(a: u32) -> u32;
+//     fn my_demo_function_alias(a: u32) -> u32;
+// }
 
 mod Foo {
+    
     // No `extern` equals `extern "Rust"`.
-    fn my_demo_function(a: u32) -> u32 {
+    pub fn my_demo_function(a: u32) -> u32 {
+        a
+    }
+    pub fn my_demo_function_alias(a: u32) -> u32 {
         a
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::Foo::*;
 
     #[test]
     fn test_success() {
@@ -53,9 +57,11 @@ mod tests {
         //
         // SAFETY: We know those functions are aliases of a safe
         // Rust function.
+
         unsafe {
             my_demo_function(123);
             my_demo_function_alias(456);
+
         }
     }
 }
