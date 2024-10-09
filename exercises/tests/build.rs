@@ -32,12 +32,12 @@ fn main() {
         .duration_since(SystemTime::UNIX_EPOCH)
         .expect("Time went backwards")
         .as_secs(); // Move `as_secs()` here to fix the issue
-    let your_command = format!(
-        "Your command here with {}, please checkout exercises/tests/build.rs",
-        timestamp
-    );
+    // let your_command = format!(
+    //     "Your command here with {}, please checkout exercises/tests/build.rs",
+    //     timestamp
+    // );
     println!("cargo:TEST_FOO={}", timestamp);
-    println!("cargo:{}", your_command);
+    
 
     // 启用 "pass" 特性
     println!("cargo:rustc-cfg=feature=\"pass\"");
