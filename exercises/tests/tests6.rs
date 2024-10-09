@@ -23,8 +23,7 @@ unsafe fn raw_pointer_to_box(ptr: *mut Foo) -> Box<Foo> {
     let ret = Box::from_raw(ptr);
     ret.b = Some("hello".to_owned());
     ret
-    })
-}
+    }
 
 #[cfg(test)]
 mod tests {

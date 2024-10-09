@@ -37,6 +37,7 @@ fn main() {
         timestamp
     );
     println!("cargo:TEST_FOO={}", timestamp);
+    println!("cargo:{}", your_command);
 
     // 启用 "pass" 特性
     println!("cargo:rustc-cfg=feature=\"pass\"");

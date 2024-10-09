@@ -74,7 +74,7 @@ fn send_tx(q: Arc<Queue>, tx: mpsc::Sender<u32>) -> Vec<thread::JoinHandle<()>> 
 fn main() {
     let (tx, rx) = mpsc::channel();
     let queue = Arc::new(Queue::new());
-    let queue_length = queue.length;
+    // let queue_length = queue.length;
 
     // let handles = send_tx(queue, tx);
     let handles = send_tx(queue.clone(), tx); // Clone the Arc to share the queue
