@@ -35,7 +35,7 @@ fn send_tx(q: Arc<Queue>, tx: mpsc::Sender<u32>) -> Vec<thread::JoinHandle<()>> 
         // let mut value = tx.send(*val);
         for val in &qc1.first_half {
             println!("sending {:?}", val);
-            tx1.send(*val).unwrap()
+            tx1.send(*val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
