@@ -16,7 +16,6 @@
 //     );
 //     println!("cargo:{}", your_command);
 
-
 //     // In tests8, we should enable "pass" feature to make the
 //     // testcase return early. Fill in the command to tell
 //     // Cargo about that.
@@ -30,7 +29,7 @@ fn main() {
     // 设置环境变量 TEST_FOO
     let timestamp = SystemTime::now()
         .duration_since(SystemTime::UNIX_EPOCH)
-        .expect("Time went backwards")
+        .unwrap()
         .as_secs(); // Move `as_secs()` here to fix the issue
     // let your_command = format!(
     //     "Your command here with {}, please checkout exercises/tests/build.rs",
