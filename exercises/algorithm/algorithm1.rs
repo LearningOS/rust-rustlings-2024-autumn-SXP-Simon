@@ -68,72 +68,37 @@ impl<T> LinkedList<T> {
             },
         }
     }
-	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
-where
-    T: Ord,
-{
-    let mut list_c = LinkedList::<T>::new();
-    let mut node_a = list_a.start;
-    let mut node_b = list_b.start;
-    while let (Some(node_a), Some(node_b)) = (node_a, node_b) {
-        let val_a = unsafe { node_a.as_ref() }.val;
-        let val_b = unsafe { node_b.as_ref() }.val;
-        if val_a < val_b {
-            list_c.add(val_a);
-            node_a = unsafe { node_a.as_ref() }.next;
-        } else {
-            list_c.add(val_b);
-            node_b = unsafe { node_b.as_ref() }.next;
+    pub fn merge(mut list_a: LinkedList<T>, mut list_b: LinkedList<T>) -> Self
+    where
+        T: Ord + Clone,
+    {
+        let mut list_c = LinkedList::<T>::new();
+        let mut node_a = list_a.start;
+        let mut node_b = list_b.start;
+        while let (Some(node_a_ptr), Some(node_b_ptr)) = (node_a, node_b) {
+            let val_a = unsafe { &node_a_ptr.as_ref().val };
+            let val_b = unsafe { &node_b_ptr.as_ref().val };
+            if val_a < val_b {
+                list_c.add(val_a.clone());
+                node_a = unsafe { node_a_ptr.as_ref().next };
+            } else {
+                list_c.add(val_b.clone());
+                node_b = unsafe { node_b_ptr.as_ref().next };
+            }
         }
+        while let Some(node_a_ptr) = node_a {
+            let val_a = unsafe { &node_a_ptr.as_ref().val };
+            list_c.add(val_a.clone());
+            node_a = unsafe { node_a_ptr.as_ref().next };
+        }
+        while let Some(node_b_ptr) = node_b {
+            let val_b = unsafe { &node_b_ptr.as_ref().val };
+            list_c.add(val_b.clone());
+            node_b = unsafe { node_b_ptr.as_ref().next };
+        }
+        list_c
     }
-    while let Some(node_a) = node_a {
-        let val_a = unsafe { node_a.as_ref() }.val;
-        list_c.add(val_a);
-        node_a = unsafe { node_a.as_ref() }.next;
-    }
-    while let Some(node_b) = node_b {
-        let val_b = unsafe { node_b.as_ref() }.val;
-        list_c.add(val_b);
-        node_b = unsafe { node_b.as_ref() }.next;
-    }
-    list_c
 }
-}
-//     where
-        
-// 	{
-// 		let mut list_c = LinkedList::<T>::new();
-//         let mut node_a = list_a.start;
-//         let mut node_b = list_b.start;
-//         // while node_a.is_some() && node_b.is_some() {
-//         //     let val_a = unsafe { node_a.unwrap().as_ref() }.val;
-//         //     let val_b = unsafe { node_b.unwrap().as_ref() }.val;
-//         //     if val_a < val_b {
-//         //         list_c.add(val_a);
-//         //         node_a = unsafe { node_a.unwrap().as_ref() }.next;
-//         //     } else {
-//         //         list_c.add(val_b);
-//         //         node_b = unsafe { node_b.unwrap().as_ref() }.next;
-//         //     }
-//         // }
-//         while let (Some(node_a), Some(node_b)) = (node_a, node_b) {
-//             let val_a = unsafe { node_a.as_ref() }.val;
-//             let val_b = unsafe { node_b.as_ref() }.val;
-//             if val_a < val_b {
-//                 list_c.add(val_a);
-//                 node_a = unsafe { node_a.as_ref() }.next;
-//             } else {
-//                 list_c.add(val_b);
-//                 node_b = unsafe { node_b.as_ref() }.next;
-//             }
-//         }
-// 		Self {
-//             length: 0,
-//             start: None,
-//             end: None,
-//         }
-// 	}
-// }
 
 impl<T> Display for LinkedList<T>
 where

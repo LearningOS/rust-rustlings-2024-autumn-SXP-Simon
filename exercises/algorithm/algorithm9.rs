@@ -113,7 +113,6 @@ where
         let root = self.items.swap_remove(1);
         self.count -= 1;
         if self.count > 0 {
-            self.items[1] = self.items.pop().unwrap();
             self.heapify_down(1);
         }
         Some(root)
