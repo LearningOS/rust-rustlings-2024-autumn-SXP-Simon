@@ -57,7 +57,7 @@ impl From<&str> for Person {
         //     Some(age) => age.parse::<usize>().unwrap_or(30),
         //     None => 30,
         // };
-        let age = parts[1].trim().parse::<usize>() {
+        let age = match parts[1].trim().parse::<usize>() {
             Ok(age) => age,
             Err(_) => return Person::default(),
         }
