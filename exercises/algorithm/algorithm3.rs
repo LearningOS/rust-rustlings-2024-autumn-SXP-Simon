@@ -7,7 +7,7 @@ use std::cmp::PartialOrd;
 use std::fmt::Debug;
 
 
-fn sort<T>(array: &mut [T]){
+fn sort<T: PartialOrd + Debug>(array: &mut [T]){
     let len = array.len();
     for i in 0..len {
         for j in 0..len - i - 1 {

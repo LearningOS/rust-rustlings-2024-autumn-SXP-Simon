@@ -36,6 +36,7 @@ where
             right: None,
         }
     }
+
 }
 
 impl<T> BinarySearchTree<T>
@@ -58,6 +59,14 @@ where
     // Search for a value in the BST
     fn search(&self, value: T) -> bool {
         
+        let mut current = &self.root;
+        while let Some(node) = current {
+            match value.cmp(&node.value) {
+                Ordering::Less => current = &node.left,
+                Ordering::Greater => current = &node.right,
+                Ordering::Equal => return true,
+            }
+        }
         false
     }
 }

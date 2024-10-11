@@ -53,14 +53,11 @@ impl From<&str> for Person {
         if name.is_empty() {
             return Person::default();
         }
-        // let age = match parts.get(1) {
-        //     Some(age) => age.parse::<usize>().unwrap_or(30),
-        //     None => 30,
-        // };
+        
         let age = match parts[1].trim().parse::<usize>() {
             Ok(age) => age,
             Err(_) => return Person::default(),
-        }
+        };
         Person {
             name: name.to_string(),
             age,

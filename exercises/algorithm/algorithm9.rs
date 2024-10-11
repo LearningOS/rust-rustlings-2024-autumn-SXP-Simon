@@ -65,6 +65,24 @@ where
             right
         }
     }
+    fn heapify_up(&mut self, idx: usize) {
+        let mut idx = idx;
+        while idx > 1 && (self.comparator)(&self.items[idx], &self.items[self.parent_idx(idx)]) {
+            self.items.swap(idx, self.parent_idx(idx));
+            idx = self.parent_idx(idx);
+        }
+    }
+
+    fn heapify_down(&mut self, idx: usize) {
+        let mut idx = idx;
+        while self.children_present(idx) {
+            let smallest_child_idx = self.smallest_child_idx(idx);
+            if (self.comparator)(&self.items[smallest_child_idx], &self.items[idx]) {
+                self.items.swap(idx, smallest_child_idx);
+            }
+            idx = smallest_child_idx;
+        }
+    }
 }
 
 impl<T> Heap<T>
@@ -99,8 +117,6 @@ where
             self.heapify_down(1);
         }
         Some(root)
-    }
-		None
     }
 }
 

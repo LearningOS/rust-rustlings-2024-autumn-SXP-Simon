@@ -35,7 +35,7 @@ fn main() {
     //     "Your command here with {}, please checkout exercises/tests/build.rs",
     //     timestamp
     // );
-    println!("cargo:TEST_FOO={}", timestamp);
+    println!("cargo:rustc-env=TEST_FOO={}", timestamp);
     
 
     // 启用 "pass" 特性
